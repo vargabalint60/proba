@@ -4,12 +4,12 @@
 int main()
 {
     vector2d<double> v1;
-    std::cout << "Enter two numbers for v1:" << std::endl;
+    std::cout << "Enter vector 1:" << std::endl;
     std::cin >> v1;
     std::cout << "v1 = " << v1 << std::endl;
 
     vector2d<double> v2;
-    std::cout << "Enter two numbers for v1:" << std::endl;
+    std::cout << "Enter vector 2:" << std::endl;
     std::cin >> v2;
     std::cout << "v2 = " << v2 << std::endl;
     vector2d<double> v3 = v2 - v1;

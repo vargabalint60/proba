@@ -61,7 +61,9 @@ public:
         return vector2d{a*v.x, a*v.y};
     }
 
-
+    friend vector2d<T> normalize(vector2d<T> const& v){
+        return vector2d{v.x/length(v), v.y/length(v)};
+    }
 };
 
 template<typename T>
@@ -77,9 +79,4 @@ T length(vector2d<T> const& v){
 template<typename T>
 T sqlength(vector2d<T> const& v){
     return v.x*v.x + v.y*v.y;
-}
-
-template<typename T>
-vector2d<T> normalize(vector2d<T> const& v){
-    return vector2d{v.x/length(v), v.y/length(v)};
 }
