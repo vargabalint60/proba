@@ -14,10 +14,18 @@ public:
         return *this;
     }
 
+    vector2d<T> operator+(vector2d<T> const& b){
+        return vector2d{x+b.x, y+b.y};
+    }
+
     vector2d<T> operator-=(vector2d<T> const& b){
         x -= b.x;
         y -= b.y;
         return *this;
+    }
+
+    vector2d<T> operator-(vector2d<T> const& b){
+        return vector2d{x-b.x, y-b.y};
     }
 
     vector2d<T> operator*=(T const& a){
@@ -26,37 +34,35 @@ public:
         return *this;
     }
 
+    template<typename A>
+    vector2d<T> operator*(A const& a){
+        return vector2d{a*x, a*y};
+    }
+
     vector2d<T> operator/=(T const& a){
         x = x/a;
         y = y/a;
         return *this;
     }
+
+    friend std::ostream& operator<<(std::ostream& o, vector2d<T>const& v){
+        o << "[" << v.x << ", " << v.y << "]";
+        return o;
+    }
+
+    friend std::istream& operator>>(std::istream& i, vector2d<T>& v){
+        i >> v.x;
+        i >> v.y;
+        return i;
+    }
+
+    template< typename A>
+    friend vector2d<T> operator*(A const& a, vector2d<T> const& v){
+        return vector2d{a*v.x, a*v.y};
+    }
+
+
 };
-
-template<typename T>
-vector2d<T> operator-(vector2d<T> const& a, vector2d<T> const& b){
-    return vector2d{a.x-b.x, a.y-b.y};
-}
-
-template<typename T>
-vector2d<T> operator+(vector2d<T> const& a, vector2d<T> const& b){
-    return vector2d{a.x+b.x, a.y+b.y};
-}
-
-template<typename T, typename A>
-vector2d<T> operator*(A const& a, vector2d<T> const& v){
-    return vector2d{a*v.x, a*v.y};
-}
-
-template<typename T, typename A>
-vector2d<T> operator*(vector2d<T> const& v, A const& a){
-    return vector2d{a*v.x, a*v.y};
-}
-
-template<typename T>
-vector2d<T> operator/=(vector2d<T> const& v, T const& a){
-    return vector2d{v.x/a, v.y/a};
-}
 
 template<typename T>
 T dot(vector2d<T> const& a, vector2d<T> const& b){
@@ -64,16 +70,16 @@ T dot(vector2d<T> const& a, vector2d<T> const& b){
 }
 
 template<typename T>
-T lenght(vector2d<T> const& v){
+T length(vector2d<T> const& v){
     return sqrt(v.x*v.x + v.y*v.y);
 }
 
 template<typename T>
-T sqlenght(vector2d<T> const& v){
+T sqlength(vector2d<T> const& v){
     return v.x*v.x + v.y*v.y;
 }
 
 template<typename T>
 vector2d<T> normalize(vector2d<T> const& v){
-    return vector2d{v.x/lenght(v), v.y/lenght(v)};
+    return vector2d{v.x/length(v), v.y/length(v)};
 }
